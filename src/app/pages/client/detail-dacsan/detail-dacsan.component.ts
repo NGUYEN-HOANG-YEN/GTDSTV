@@ -20,7 +20,6 @@ export class DetailDacsanComponent implements OnInit {
     this.routerActive.params.subscribe((params: any) => {
       if (params) {
         this.filterData = this.AboutData.filter(x => x.id == params.id)
-        console.log("filterData", this.filterData);
 
       }
     });

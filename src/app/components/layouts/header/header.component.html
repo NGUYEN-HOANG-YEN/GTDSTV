@@ -16,7 +16,8 @@
             <a class="nav-link text-white" href="/"> Trang chủ </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" routerLink="/about">Những đặc sản nổi bật</a>
+            <a class="nav-link text-white" routerLink="/about">Những đặc sản nổi
+              bật</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="javascript:;"
@@ -25,7 +26,8 @@
               Đặc sản
             </a>
             <ul class="dropdown-menu " style="margin-top: -5px;">
-              <li class="nav-item dropend" *ngFor="let item of DropdownData">
+              <li [routerLink]="['district',item.idhuyen]"
+                class="nav-item dropend" *ngFor="let item of DropdownData">
                 <a class="nav-link dropdown-toggle" href="#" role="button"
                   data-bs-toggle="dropdown" aria-expanded="false">
                   {{item.huyen}}

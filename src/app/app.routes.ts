@@ -19,6 +19,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { DacsanComponent } from './pages/client/dacsan/dacsan.component';
 import { AboutComponent } from './pages/client/about/about.component';
 import { DetailDacsanComponent } from './pages/client/detail-dacsan/detail-dacsan.component';
+import { ProductDistrictComponent } from './pages/client/product-district/product-district.component';
 
 
 export const routes: Routes = [
@@ -38,6 +39,11 @@ export const routes: Routes = [
         path: '',
         component: HomePageComponent,
       },
+      {
+        path: 'district/:id',
+        component: ProductDistrictComponent,
+      },
+
 
       {
         path: 'dacsan',
@@ -56,7 +62,7 @@ export const routes: Routes = [
         path: 'dacsan/:id',
         component: DetailDacsanComponent,
       },
-      
+
       {
         path: 'search',
         component: SearchComponent,

@@ -1,7 +1,7 @@
 export interface DropdownData {
     huyen: string,
     dacsan: any[];
-
+    idhuyen: number
 }
 export const DropdownData: DropdownData[] = [
     {
@@ -11,10 +11,10 @@ export const DropdownData: DropdownData[] = [
             title: "Dừa sáp",
         }, {
             id: 9,
-            title: "Trái Quách",   
-        },{
+            title: "Trái Quách",
+        }, {
             id: 15,
-            title: "Bánh tét cốm dẹp",   
+            title: "Bánh tét cốm dẹp",
         }, {
             id: 19,
             title: "Chuối tá quạ"
@@ -22,10 +22,12 @@ export const DropdownData: DropdownData[] = [
             id: 20,
             title: "Cốm dẹp"
         }],
+        idhuyen: 1
     },
     {
         huyen: 'Càng Long',
         dacsan: [],
+        idhuyen: 2
     },
     {
         huyen: 'Châu Thành',
@@ -41,31 +43,34 @@ export const DropdownData: DropdownData[] = [
         }, {
             id: 7,
             title: "Cháo ám"
-        },{
+        }, {
             id: 14,
             title: "Bánh ú Đa Lộc"
-        },{
+        }, {
             id: 16,
             title: "Mắm bò hóc"
-        },{
+        }, {
             id: 18,
             title: "Rượu Xuân Thanh"
         }],
+        idhuyen: 3
     },
     {
         huyen: 'Tiểu Cần',
         dacsan: [],
+        idhuyen: 4
     },
     {
         huyen: 'Trà Cú',
         dacsan: [],
+        idhuyen: 5
     },
     {
         huyen: 'Cầu Ngang',
         dacsan: [{
             id: 4,
             title: "Bánh tét Trà Cuông",
-        },{
+        }, {
             id: 11,
             title: "Tôm khô Vĩnh Kim",
         }, {
@@ -75,6 +80,7 @@ export const DropdownData: DropdownData[] = [
             id: 23,
             title: "Bánh tráng"
         }],
+        idhuyen: 6
     },
     {
         huyen: 'Duyên Hải',
@@ -93,7 +99,9 @@ export const DropdownData: DropdownData[] = [
         }, {
             id: 21,
             title: "Mức bần"
-        }]
+        }],
+        idhuyen: 7
+
     },
     {
         huyen: 'Tp Trà Vinh',
@@ -101,6 +109,7 @@ export const DropdownData: DropdownData[] = [
             id: 17,
             title: "Chả hoa Năm Thụy",
         }],
+        idhuyen: 8
     },
 
 ];

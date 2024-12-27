@@ -1,52 +1,62 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { BannerComponent } from './../../../components/layouts/banner/banner.component';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { IProduct } from '../../../interfaces/Product';
-import { ProductService } from '../../../service/product.service';
-import { BannerComponent } from '../../../components/layouts/banner/banner.component';
 import { CartService } from '../../../service/cart.service';
+import { ProductService } from '../../../service/product.service';
 import { CookieService } from 'ngx-cookie-service';
-import { RatingComponent } from '../component/rating/rating.component';
+import { CategoryService } from '../../../service/categorie.service';
+import { IProduct } from '../../../interfaces/Product';
 import { ICart } from '../../../interfaces/Cart';
 import { tap } from 'rxjs';
-import { CategoryService } from '../../../service/categorie.service';
-import { Category } from '../../../interfaces/Category';
+import { CommonModule } from '@angular/common';
+import { RatingComponent } from '../component/rating/rating.component';
+import { DropdownData } from '../../../utils/dacsan-huyenxa-item';
 
 @Component({
-  selector: 'app-home-page',
+  selector: 'app-product-district',
   standalone: true,
-  templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.css',
   imports: [CommonModule, RouterModule, BannerComponent, RatingComponent],
+  templateUrl: './product-district.component.html',
+  styleUrl: './product-district.component.css'
 })
-export class HomePageComponent implements OnInit {
-  products: IProduct[] | undefined;
-  categories: Category[] | undefined;
+export class ProductDistrictComponent {
+  filterData: any;
+  DropdownData: any = DropdownData
+  isCartUpdated: boolean = false;
   userInfo: any = {} as any;
   carts: ICart[] = [];
   cart: any = {} as any;
-  isCartUpdated: boolean = false;
-  @Input() rate: number = 0;
-  constructor(
-
+  products: IProduct[] | undefined;
+  filterProducts: IProduct[] | undefined;;
+  constructor(private routerActive: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService,
     private categoryService: CategoryService,
     private router: Router,
     private cookieService: CookieService
-  ) { }
-  ngOnInit() {
-    this.productService.getProducts().subscribe((products) => {
-      this.products = products;
+  ) {
+  }
+  formatCurrency(amount: number): string {
+    const formatter = new Intl.NumberFormat('vi-VN', {
+      style: 'currency',
+      currency: 'VND',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
     });
-    this.userInfo = this.getUserInfoFromCookie();
-    this.cartService.getItems().subscribe((item) => {
-      this.carts = item;
+    const formattedAmount = formatter.format(amount);
+    return formattedAmount.replace('.00', '');
+  }
+  ngOnInit(): void {
+    this.routerActive.params.subscribe((params: any) => {
+      if (params) {
+
+        this.productService.getProducts().subscribe((products) => {
+          this.products = products;
+          this.filterProducts = this.products.filter((x: any) => x.idhuyen == params.id)
+        });
+        this.filterData = this.DropdownData.filter((x: any) => x.idhuyen == params.id)[0]
+      }
     });
-    this.categoryService.getCategories().subscribe(cate => {
-      this.categories = cate
-    }
-    )
   }
   ngAfterViewChecked(): void {
     if (this.isCartUpdated) {
@@ -101,35 +111,5 @@ export class HomePageComponent implements OnInit {
       alert('Bạn cần đăng nhập để mua hàng!');
       this.router.navigate(['/login']);
     }
-  }
-  getUserInfoFromCookie() {
-    const userInfoString = this.cookieService.get('userInfo');
-    if (userInfoString) {
-      try {
-        return JSON.parse(userInfoString);
-      } catch (error) {
-        console.error('Error parsing userInfo from cookie:', error);
-        return null;
-      }
-    }
-    return null;
-  }
-  formatCurrency(amount: number): string {
-    const formatter = new Intl.NumberFormat('vi-VN', {
-      style: 'currency',
-      currency: 'VND',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    });
-    const formattedAmount = formatter.format(amount);
-    return formattedAmount.replace('.00', '');
-  }
-
-  get numStars(): number {
-    return Math.floor(this.rate);
-  }
-
-  get stars(): any[] {
-    return new Array(5);
   }
 }
