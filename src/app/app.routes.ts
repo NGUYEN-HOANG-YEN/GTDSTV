@@ -20,6 +20,7 @@ import { DacsanComponent } from './pages/client/dacsan/dacsan.component';
 import { AboutComponent } from './pages/client/about/about.component';
 import { DetailDacsanComponent } from './pages/client/detail-dacsan/detail-dacsan.component';
 import { ProductDistrictComponent } from './pages/client/product-district/product-district.component';
+import { PaymentComponent } from './pages/client/payment/payment.component';
 
 
 export const routes: Routes = [
@@ -72,6 +73,11 @@ export const routes: Routes = [
         path: 'cart',
         component: CartComponent,
       },
+      {
+        path: 'payment',
+        component: PaymentComponent,
+      },
+      
     ],
   },
   {

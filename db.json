@@ -194,5 +194,11 @@
       "id": 17
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "productId": 7,
+      "quantity": 1,
+      "id": 1
+    }
+  ]
 }

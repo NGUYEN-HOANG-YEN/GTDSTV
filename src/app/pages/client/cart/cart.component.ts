@@ -91,6 +91,10 @@ export class CartComponent implements OnInit {
       });
     }
   }
+  Payment()
+  {
+    this.router.navigate(['/payment']);
+  }
   formatCurrency(amount: number): string {
     const formatter = new Intl.NumberFormat('vi-VN', {
       style: 'currency',
